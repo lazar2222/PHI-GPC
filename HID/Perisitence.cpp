@@ -4,6 +4,7 @@ const byte PERS_KAFTWERK = 0;
 const byte PERS_TRESHOLD = 1;
 const byte PERS_DEBOUNCE = 2;
 const byte PERS_ERF = 3;
+const byte PERS_ENCMS = 4;
 
 void WritePers(byte ID,byte val)
 {
@@ -23,9 +24,11 @@ void RefreshPersistence()
         WritePers(PERS_TRESHOLD,TRESHOLD);
         WritePers(PERS_DEBOUNCE,DEBOUNCE);
         WritePers(PERS_ERF,ERF);
+        WritePers(PERS_ENCMS,ENCMS);
     }
     KRAFTWERK = readPers(PERS_KAFTWERK);
     TRESHOLD = readPers(PERS_TRESHOLD);
     DEBOUNCE = readPers(PERS_DEBOUNCE);
     ERF = readPers(PERS_ERF);
+    ENCMS = readPers(PERS_ENCMS);
 }

@@ -19,17 +19,18 @@ const extern byte PEDALA, PEDALO, PEDALT;
 const extern byte JOYXI, JOYYI, JOYSI ;
 const extern byte PEDALAI, PEDALOI, PEDALTI;
 const extern byte AnalogAlias[];
-const extern byte ButtonAlias[];
-const extern byte LedAlias[16];
-const extern byte LedColorAlias[16][3];
+const extern short ButtonAlias[];
+const extern byte LedAlias[3][16];
 
 extern LiquidCrystal Lcd;
 
 extern bool Init;
-extern byte ENCPre[5];
+extern short ENCPre[5];
+extern bool ENClast[5];
 extern short AnalogPre[19];
 extern short AnalogAvg[19];
 extern byte ButtonDebounce[67];
+extern bool ButtonBool[67];
 extern byte LedValue[16][3];
 extern char LcdBuff[4][21];
 
@@ -38,5 +39,6 @@ extern bool KRAFTWERK;
 extern byte TRESHOLD;
 extern byte DEBOUNCE;
 extern byte ERF;
+extern byte ENCMS;
 
 #endif

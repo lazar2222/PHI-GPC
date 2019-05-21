@@ -11,9 +11,11 @@ void MatrixB(byte mux);
 void MuxB();
 void MatrixD(byte mux);
 void Enc();
+void ENC0ISR();
 void Joy();
 void Pedal();
 void LcdUpdate();
+void CheckReset();
 
 void setup() 
 {
@@ -34,12 +36,14 @@ void loop()
     Pedal();
   }
   LcdUpdate();
+  CheckReset();
 }
 
 void SnLInit()
 {
   Serial.begin(115200);
-  Lcd.begin(20,4); 
+  Lcd.begin(20,4);
+  Lcd.clear();
 }
 
 void PinModeInit()
@@ -53,6 +57,11 @@ void PinModeInit()
   {
     DoPinMode(ENC[i],2,INPUT_PULLUP);
   }
+  attachInterrupt(digitalPinToInterrupt(ENC[0][0]), ENC0ISR, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENC[1][0]), ENC1ISR, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENC[2][0]), ENC2ISR, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENC[3][0]), ENC3ISR, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENC[4][0]), ENC4ISR, RISING);
   DoPinMode(MATRIXB,4,OUTPUT);
   DoPinMode(MATRIXD,4,OUTPUT);
   pinMode(JOYX,INPUT);
@@ -72,12 +81,12 @@ void MuxA()
     short val = analogRead(MUXAR[0]);
     short avg = (val+AnalogAvg[i])/2;
     AnalogAvg[i]=val;
-    if(abs(avg-AnalogPre[i])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i],avg);AnalogPre[i]=avg;}
+    if(abs(avg-AnalogPre[i])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i],avg,true);AnalogPre[i]=avg;}
 
     val = analogRead(MUXAR[1]);
     avg = (val+AnalogAvg[i+8])/2;
     AnalogAvg[i+8]=val;
-    if(abs(avg-AnalogPre[i+8])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i+8],avg);AnalogPre[i+8]=avg;}
+    if(abs(avg-AnalogPre[i+8])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i+8],avg,true);AnalogPre[i+8]=avg;}
 
     MatrixB(i);
   }
@@ -90,27 +99,29 @@ void MatrixB(byte mux)
       SetMatrix(MATRIXB,4,i);
 
       byte ind=i*8+mux;
-      if(digitalRead(MUXDR[0])==HIGH && ButtonDebounce[ind]<DEBOUNCE)
+      byte val=digitalRead(MUXDR[0]);
+      if(val==HIGH && ButtonDebounce[ind]<DEBOUNCE)
       {
         ButtonDebounce[ind]++;
-        if(ButtonDebounce[ind]==DEBOUNCE){SendMessage(BUTTON_PRESS,ButtonAlias[ind]);}
+        if(ButtonDebounce[ind]==DEBOUNCE && ButtonBool[ind]==false){SendMessage(BUTTON_PRESS,ButtonAlias[ind]);ButtonBool[ind]=true;}
       }
-      else if(ButtonDebounce[ind]>0)
+      else if(val==LOW && ButtonDebounce[ind]>0)
       {
         ButtonDebounce[ind]--;
-        if(ButtonDebounce[ind]==0){SendMessage(BUTTON_RELEASE,ButtonAlias[ind]);}
+        if(ButtonDebounce[ind]==0 && ButtonBool[ind]==true){SendMessage(BUTTON_RELEASE,ButtonAlias[ind]);ButtonBool[ind]=false;}
       }
 
       ind += 32;
-      if(digitalRead(MUXDR[1])==HIGH && ButtonDebounce[ind]<DEBOUNCE)
+      val=digitalRead(MUXDR[1]);
+      if(val==HIGH && ButtonDebounce[ind]<DEBOUNCE)
       {
         ButtonDebounce[ind]++;
-        if(ButtonDebounce[ind]==DEBOUNCE){SendMessage(BUTTON_PRESS,ButtonAlias[ind]);}
+        if(ButtonDebounce[ind]==DEBOUNCE && ButtonBool[ind]==false){SendMessage(BUTTON_PRESS,ButtonAlias[ind]);ButtonBool[ind]=true;}
       }
-      else if(ButtonDebounce[ind]>0)
+      else if(val==LOW && ButtonDebounce[ind]>0)
       {
         ButtonDebounce[ind]--;
-        if(ButtonDebounce[ind]==0){SendMessage(BUTTON_RELEASE,ButtonAlias[ind]);}
+        if(ButtonDebounce[ind]==0 && ButtonBool[ind]==true){SendMessage(BUTTON_RELEASE,ButtonAlias[ind]);ButtonBool[ind]=false;}
       }
     }
 }
@@ -143,19 +154,88 @@ void Enc()
 {
   for(byte i=0;i<5;i++)
   {
-    if(digitalRead(ENC[i][0])==HIGH && ENCPre[i]==LOW)
+    ENCPre[i]=constrain(ENCPre[i],-((short)ENCMS),(short)ENCMS);
+    while(ENCPre[i]!=0)
     {
-      if(digitalRead(ENC[i][1])==HIGH)  
+      if(ENCPre[i]>0){if(ENClast[i]==true){SendMessage(ENCODER_INCREMENT,i);}ENCPre[i]--;ENClast[i]=true;}
+      else{if(ENClast[i]==false){SendMessage(ENCODER_DECREMENT,i);}ENCPre[i]++;ENClast[i]=false;}
+    }
+  }
+}
+
+void ENC0ISR()
+{
+  if(digitalRead(ENC[0][0])==HIGH)
+  {
+    if(digitalRead(ENC[0][1])==LOW)  
       {
-        SendMessage(ENCODER_DECREMENT,i);
+        ENCPre[0]++;
       }
       else
       {
-        SendMessage(ENCODER_INCREMENT,i);
+        ENCPre[0]--;
       }
-    }
-    ENCPre[i]=digitalRead(ENC[i][0]);
-  }  
+  }
+}
+
+void ENC1ISR()
+{
+  if(digitalRead(ENC[1][0])==HIGH)
+  {
+    if(digitalRead(ENC[1][1])==LOW)  
+      {
+        ENCPre[1]++;
+      }
+      else
+      {
+        ENCPre[1]--;
+      }
+  }
+}
+
+void ENC2ISR()
+{
+  if(digitalRead(ENC[2][0])==HIGH)
+  {
+    if(digitalRead(ENC[2][1])==LOW)  
+      {
+        ENCPre[2]++;
+      }
+      else
+      {
+        ENCPre[2]--;
+      }
+  }
+}
+
+void ENC3ISR()
+{
+  if(digitalRead(ENC[3][0])==HIGH)
+  {
+    if(digitalRead(ENC[3][1])==LOW)  
+      {
+        ENCPre[3]++;
+      }
+      else
+      {
+        ENCPre[3]--;
+      }
+  }
+}
+
+void ENC4ISR()
+{
+  if(digitalRead(ENC[4][0])==HIGH)
+  {
+    if(digitalRead(ENC[4][1])==LOW)  
+      {
+        ENCPre[4]++;
+      }
+      else
+      {
+        ENCPre[4]--;
+      }
+  }
 }
 
 void Joy()
@@ -163,63 +243,71 @@ void Joy()
   short val = analogRead(JOYX);
   short avg = (val+AnalogAvg[JOYXI])/2;
   AnalogAvg[JOYXI]=val;
-  if(abs(avg-AnalogPre[JOYXI])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[JOYXI],avg);AnalogPre[JOYXI]=avg;}
+  if(abs(avg-AnalogPre[JOYXI])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[JOYXI],avg,true);AnalogPre[JOYXI]=avg;}
 
   val = analogRead(JOYY);
   avg = (val+AnalogAvg[JOYYI])/2;
   AnalogAvg[JOYYI]=val;
-  if(abs(avg-AnalogPre[JOYYI])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[JOYYI],avg);AnalogPre[JOYYI]=avg;}
+  if(abs(avg-AnalogPre[JOYYI])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[JOYYI],avg,true);AnalogPre[JOYYI]=avg;}
 
-  if(digitalRead(JOYS)==LOW && ButtonDebounce[JOYSI]<DEBOUNCE)
+  val=digitalRead(JOYS);
+  if(val==LOW && ButtonDebounce[JOYSI]<DEBOUNCE)
   {
     ButtonDebounce[JOYSI]++;
-    if(ButtonDebounce[JOYSI]==DEBOUNCE){SendMessage(BUTTON_PRESS,ButtonAlias[JOYSI]);}
+    if(ButtonDebounce[JOYSI]==DEBOUNCE && ButtonBool[JOYSI]==false){SendMessage(BUTTON_PRESS,ButtonAlias[JOYSI]);ButtonBool[JOYSI]=true;}
   }
-  else if(ButtonDebounce[JOYSI]>0)
+  else if(val==HIGH && ButtonDebounce[JOYSI]>0)
   {
     ButtonDebounce[JOYSI]--;
-    if(ButtonDebounce[JOYSI]==0){SendMessage(BUTTON_RELEASE,ButtonAlias[JOYSI]);}
+    if(ButtonDebounce[JOYSI]==0 && ButtonBool[JOYSI]==true){SendMessage(BUTTON_RELEASE,ButtonAlias[JOYSI]);ButtonBool[JOYSI]=false;}
   }
 }
 
 void Pedal()
 {
   short val = analogRead(PEDALA);
-  short avg = (val*ERF)+((1-ERF)*AnalogAvg[PEDALAI]);
-  if(avg!=AnalogPre[PEDALAI]){SendMessage(ANALOG_CHANGE,AnalogAlias[PEDALAI],avg);AnalogPre[PEDALAI]=avg;}
+  short avg = (val*(((double)ERF)/100))+((1-(((double)ERF)/100))*AnalogAvg[PEDALAI]);
+  if(avg!=AnalogPre[PEDALAI]){SendMessage(ANALOG_CHANGE,AnalogAlias[PEDALAI],avg,true);AnalogPre[PEDALAI]=avg;}
   AnalogAvg[PEDALAI]=avg;
 
-  if(digitalRead(PEDALO)==LOW && ButtonDebounce[PEDALOI]<DEBOUNCE)
+  val=digitalRead(PEDALO);
+  if(val==LOW && ButtonDebounce[PEDALOI]<DEBOUNCE)
   {
     ButtonDebounce[PEDALOI]++;
-    if(ButtonDebounce[PEDALOI]==DEBOUNCE){SendMessage(BUTTON_PRESS,ButtonAlias[PEDALOI]);}
+    if(ButtonDebounce[PEDALOI]==DEBOUNCE && ButtonBool[PEDALOI]==false){SendMessage(BUTTON_PRESS,ButtonAlias[PEDALOI]);ButtonBool[PEDALOI]=true;}
   }
-  else if(ButtonDebounce[PEDALOI]>0)
+  else if(val==HIGH && ButtonDebounce[PEDALOI]>0)
   {
     ButtonDebounce[PEDALOI]--;
-    if(ButtonDebounce[PEDALOI]==0){SendMessage(BUTTON_RELEASE,ButtonAlias[PEDALOI]);}
+    if(ButtonDebounce[PEDALOI]==0 && ButtonBool[PEDALOI]==true){SendMessage(BUTTON_RELEASE,ButtonAlias[PEDALOI]);ButtonBool[PEDALOI]=false;}
   }
-  if(digitalRead(PEDALT)==LOW && ButtonDebounce[PEDALTI]<DEBOUNCE)
+  val=digitalRead(PEDALT);
+  if(val==LOW && ButtonDebounce[PEDALTI]<DEBOUNCE)
   {
     ButtonDebounce[PEDALTI]++;
-    if(ButtonDebounce[PEDALTI]==DEBOUNCE){SendMessage(BUTTON_PRESS,ButtonAlias[PEDALTI]);}
+    if(ButtonDebounce[PEDALTI]==DEBOUNCE && ButtonBool[PEDALTI]==false){SendMessage(BUTTON_PRESS,ButtonAlias[PEDALTI]);ButtonBool[PEDALTI]=true;}
   }
-  else if(ButtonDebounce[PEDALTI]>0)
+  else if(val==HIGH && ButtonDebounce[PEDALTI]>0)
   {
     ButtonDebounce[PEDALTI]--;
-    if(ButtonDebounce[PEDALTI]==0){SendMessage(BUTTON_RELEASE,ButtonAlias[PEDALTI]);}
+    if(ButtonDebounce[PEDALTI]==0 && ButtonBool[PEDALTI]==true){SendMessage(BUTTON_RELEASE,ButtonAlias[PEDALTI]);ButtonBool[PEDALTI]=false;}
   }
 }
 
 void LcdUpdate()
 {
   if(DoUpdateLcd){
-    Lcd.setCursor(0,0);
     for (byte i = 0; i < 4; i++)
     {
+      Lcd.setCursor(0,i);
       Lcd.print(LcdBuff[i]);
     }
     DoUpdateLcd=false;
   }
   
+}
+
+void CheckReset()
+{
+  if(ButtonDebounce[33]==DEBOUNCE && ButtonDebounce[35]==DEBOUNCE && ButtonDebounce[59]==DEBOUNCE){SendMessage(SYSTEM,SYSTEM_RESET);Lcd.clear();Lcd.print("RESET");delay(1000);software_Reset();}
 }
