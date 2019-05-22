@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PHI_Control_Center.Classes
 {
-    class Device:IComparable<Device>
+    class Device : IComparable<Device>
     {
         public String Name;
         public byte DeviceId;
@@ -23,8 +23,8 @@ namespace PHI_Control_Center.Classes
 
         public int CompareTo(Device b)
         {
-            int compinta =DeviceId + (IsAddon ? 1 + AddonAddress : 0);
-            int compintb =b.DeviceId+(b.IsAddon?1+b.AddonAddress:0);
+            int compinta = DeviceId + (IsAddon ? 1 + AddonAddress : 0);
+            int compintb = b.DeviceId + (b.IsAddon ? 1 + b.AddonAddress : 0);
             return compinta.CompareTo(compintb);
         }
 
@@ -55,7 +55,8 @@ namespace PHI_Control_Center.Classes
             Button = 1,
             RGBButton = 2,
             Encoder = 3,
-            LCD = 4
+            LCD = 4,
+            JoyStick = 5
         };
 
         public TType Type;

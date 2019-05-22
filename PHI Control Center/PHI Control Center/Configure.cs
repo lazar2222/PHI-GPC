@@ -55,7 +55,7 @@ namespace PHI_Control_Center
             }
             else
             {
-                pb.Image = new Bitmap(@"Devices/A" + (d.DeviceId+d.AddonAddress) + ".png");
+                pb.Image = new Bitmap(@"Devices/A" + (d.DeviceId + d.AddonAddress) + ".png");
             }
         }
 
@@ -67,7 +67,7 @@ namespace PHI_Control_Center
                 {
                     if (e.X >= c.X && e.X <= c.X + c.W && e.Y >= c.Y && e.Y <= c.Y + c.H)
                     {
-                        MessageBox.Show(c.Type.ToString() + " "+c.Id);
+                        MessageBox.Show(c.Type.ToString() + " " + c.Id);
                     }
                 }
             }
