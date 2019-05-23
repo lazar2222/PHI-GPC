@@ -79,11 +79,13 @@ void MuxA()
     SetMux(MUXE,3,i);
 
     short val = analogRead(MUXAR[0]);
+    val = constrain(map(val,0,980,0,1023),0,1023);
     short avg = (val+AnalogAvg[i])/2;
     AnalogAvg[i]=val;
     if(abs(avg-AnalogPre[i])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i],avg,true);AnalogPre[i]=avg;}
 
     val = analogRead(MUXAR[1]);
+    val = constrain(map(val,0,980,0,1023),0,1023);
     avg = (val+AnalogAvg[i+8])/2;
     AnalogAvg[i+8]=val;
     if(abs(avg-AnalogPre[i+8])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i+8],avg,true);AnalogPre[i+8]=avg;}
@@ -197,7 +199,7 @@ void ENC2ISR()
 {
   if(digitalRead(ENC[2][0])==HIGH)
   {
-    if(digitalRead(ENC[2][1])==LOW)  
+    if(digitalRead(ENC[2][1])==LOW)
       {
         ENCPre[2]++;
       }
@@ -267,7 +269,8 @@ void Pedal()
 {
   short val = analogRead(PEDALA);
   short avg = (val*(((double)ERF)/100))+((1-(((double)ERF)/100))*AnalogAvg[PEDALAI]);
-  if(avg!=AnalogPre[PEDALAI]){SendMessage(ANALOG_CHANGE,AnalogAlias[PEDALAI],avg,true);AnalogPre[PEDALAI]=avg;}
+  short maped=constrain(map(avg,10*APLL,10*APUL,0,1023),0,1023);
+  if(maped!=AnalogPre[PEDALAI]){SendMessage(ANALOG_CHANGE,AnalogAlias[PEDALAI],maped,true);AnalogPre[PEDALAI]=maped;}
   AnalogAvg[PEDALAI]=avg;
 
   val=digitalRead(PEDALO);
@@ -281,6 +284,7 @@ void Pedal()
     ButtonDebounce[PEDALOI]--;
     if(ButtonDebounce[PEDALOI]==0 && ButtonBool[PEDALOI]==true){SendMessage(BUTTON_RELEASE,ButtonAlias[PEDALOI]);ButtonBool[PEDALOI]=false;}
   }
+
   val=digitalRead(PEDALT);
   if(val==LOW && ButtonDebounce[PEDALTI]<DEBOUNCE)
   {

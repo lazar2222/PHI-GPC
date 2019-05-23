@@ -33,7 +33,10 @@ namespace PHI_Control_Center
 
         private void EXITToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RTPthread.Stop(false);
+            if (RTPthread.running)
+            {
+                RTPthread.Stop(false);
+            }
             exitclose = true;
             Application.Exit();
         }

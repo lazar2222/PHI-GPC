@@ -30,9 +30,11 @@ bool ButtonBool[67]={false};
 byte LedValue[16][3]={0};
 char LcdBuff[4][21];
 
-//move to persistent
+//Persistent
 bool KRAFTWERK=false;
 byte TRESHOLD=3;
 byte DEBOUNCE=3;
 byte ERF=80;
 byte ENCMS=1;
+byte APLL=60;
+byte APUL=65;

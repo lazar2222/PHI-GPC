@@ -31,8 +31,6 @@ const extern byte SET_LCD_LEN;
 extern byte MsgBuffer[25];
 extern bool DoUpdateLcd;
 
-void GphInit();
-
 void SendMessage(byte cmd,byte chan,short val,bool x);
 void SendMessage(byte cmd,byte chan,byte val);
 void SendMessage(byte cmd,short chan);

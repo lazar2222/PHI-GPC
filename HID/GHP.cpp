@@ -29,8 +29,8 @@ void SendMessage(byte cmd,byte chan,short val,bool x)
 {
     Serial.write(cmd);
     Serial.write(chan);
-    Serial.write(val%255);
-    Serial.write(val/255);
+    Serial.write(lowByte(val));
+    Serial.write(highByte(val));
 }
 
 void SendMessage(byte cmd,byte chan,byte val)

@@ -24,6 +24,7 @@ namespace PluginBase
         bool Selftest();
         string GetPluginName();
         void Init();
+        void Close();
     }
 
     public interface IGHP_Implementation

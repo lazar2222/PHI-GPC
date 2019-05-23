@@ -34,11 +34,13 @@ extern bool ButtonBool[67];
 extern byte LedValue[16][3];
 extern char LcdBuff[4][21];
 
-//move to persistent
+//Persistent
 extern bool KRAFTWERK;
 extern byte TRESHOLD;
 extern byte DEBOUNCE;
 extern byte ERF;
 extern byte ENCMS;
+extern byte APLL;
+extern byte APUL;
 
 #endif

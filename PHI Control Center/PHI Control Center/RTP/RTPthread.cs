@@ -121,6 +121,10 @@ namespace PHI_Control_Center.RTP
                 if (!reset) { item.SendMessage(GHP.SYSTEM, GHP.SYSTEM_RESET); }
                 item.Close();
             }
+            foreach (KeyValuePair<string, IPlugin> plug in plugins)
+            {
+                plug.Value.Close();
+            }
         }
     }
 }

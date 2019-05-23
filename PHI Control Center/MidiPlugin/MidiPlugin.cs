@@ -90,5 +90,10 @@ namespace MidiPlugin
             states = new Dictionary<byte, bool>();
             init = true;
         }
+
+        public void Close()
+        {
+            MidiPort.shutdown();
+        }
     }
 }

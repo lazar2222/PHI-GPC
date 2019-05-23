@@ -1,0 +1,32 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {serbian}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {1}Kori\IeC {\v s}\IeC {\'c}ene Tehnologije}{1}{chapter.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Arduino}{1}{section.1.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}C\# desktop aplikacije}{1}{section.1.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}MIDI}{1}{section.1.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{virtualMIDI}{1}{section*.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {2}Kontroler}{2}{chapter.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Hardver}{2}{section.2.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Mikrokontrolerski Kod}{2}{section.2.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {3}GHP Protokol}{3}{chapter.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {4}Desktop aplikacija}{4}{chapter.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Segment za konfigurisanje}{4}{section.4.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Dopunski kontroleri}{4}{section*.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Trajni podatci}{4}{section*.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Segment za obradu u realnom vremenu}{4}{section.4.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {5}Zaklju\IeC {\v c}ci i dalji rad}{5}{chapter.5}% 
