@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PluginBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PHI_Control_Center.Classes
 {
-    class Device : IComparable<Device>
+    public class Device : IComparable<Device>
     {
         public String Name;
         public byte DeviceId;
@@ -14,11 +15,13 @@ namespace PHI_Control_Center.Classes
         public byte AddonAddress;
         public List<Bank> Banks;
         public List<PersistentVariable> PersistentVariables;
+        public List<Addon> Addons;
 
         public Device()
         {
             Banks = new List<Bank>();
             PersistentVariables = new List<PersistentVariable>();
+            Addons = new List<Addon>();
         }
 
         public int CompareTo(Device b)
@@ -36,7 +39,7 @@ namespace PHI_Control_Center.Classes
 
     }
 
-    class Bank
+    public class Bank
     {
         public String Name;
         public List<Control> Controls;
@@ -47,22 +50,17 @@ namespace PHI_Control_Center.Classes
         }
     }
 
-    class Control
+    public class Control
     {
-        public enum TType
-        {
-            Analog = 0,
-            Button = 1,
-            RGBButton = 2,
-            Encoder = 3,
-            LCD = 4,
-            JoyStick = 5
-        };
-
-        public TType Type;
+        public CType Type;
         public byte Id;
+
         public byte Lin;
         public byte Char;
+        public byte Idl;
+        public byte IdA1;
+        public byte IdA2;
+        public byte IdS;
 
         public int X;
         public int Y;
@@ -71,9 +69,20 @@ namespace PHI_Control_Center.Classes
 
     }
 
-    class PersistentVariable
+    public class PersistentVariable
     {
         public string Name;
         public byte Id;
+    }
+
+    public class Addon
+    {
+        public string Name;
+        public byte AddonAddress;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

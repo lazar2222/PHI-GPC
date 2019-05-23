@@ -16,8 +16,8 @@ namespace MidiPlugin
         public Dictionary<String, FunctionBox> Functions;
         TeVirtualMIDI MidiPort;
         bool init = false;
-        IGHP_Implementation serial;
         dialogForm df;
+        Dictionary<byte, bool>states;
 
         public Dictionary<string, FunctionBox> GetFunctions()
         {
@@ -27,35 +27,42 @@ namespace MidiPlugin
         public MidiPlugin()
         {
             df = new dialogForm();
-            Functions = new Dictionary<string, FunctionBox>();
-            Functions.Add("MidiCCAnalog", new FunctionBox(MidiCCAnalog, 0, df));
-            Functions.Add("MidiCCButton", new FunctionBox(MidiCCAnalog, 1, df));
-            Functions.Add("MidiCCRGBButton", new FunctionBox(MidiCCAnalog, 2, df));
+            Functions = new Dictionary<string, FunctionBox>
+            {
+                { "MidiCCAnalog", new FunctionBox(MidiCCAnalog, CType.Analog, df) },
+                { "MidiCCMomentatyButton", new FunctionBox(MidiCCMomentaryButton, CType.Button, df) },
+                { "MidiCCToggleButton", new FunctionBox(MidiCCToggleButton, CType.Button, df) }
+            };
         }
 
-        public void MidiCCAnalog(byte chan, int val, params object[] par)
+        public void MidiCCAnalog(byte chan, int val, List<object> par)
         {
             if (init)
             {
-                MidiPort.sendCommand(new byte[] { (byte)(CONTROL_CHANGE + (byte)par[1]), (byte)par[0], (byte)(val / 8) });
+                MidiPort.sendCommand(new byte[] { (byte)(CONTROL_CHANGE + Convert.ToByte(par[1])), Convert.ToByte(par[0]), (byte)(val / 8) });
             }
         }
 
-        public void MidiCCButton(byte chan, int val, params object[] par)
+        public void MidiCCMomentaryButton(byte chan, int val, List<object> par)
         {
             if (init)
             {
-                MidiPort.sendCommand(new byte[] { (byte)(CONTROL_CHANGE + (byte)par[1]), (byte)par[0], (byte)(val * 127) });
+                MidiPort.sendCommand(new byte[] { (byte)(CONTROL_CHANGE + Convert.ToByte(par[1])), Convert.ToByte(par[0]), (byte)(val * 127) });
             }
         }
 
-        public void MidiCCRGBButton(byte chan, int val, params object[] par)
+        public void MidiCCToggleButton(byte chan, int val, List<object> par)
         {
-            if (init)
+            if (val == 1)
             {
-                MidiPort.sendCommand(new byte[] { (byte)(CONTROL_CHANGE+(byte)par[1]), (byte)par[0], (byte)(val * 127) });
-                serial.Send_Message(new byte[] { SET_LED, chan, (byte)(val * 255), 0, 0 });
+                if (!states.ContainsKey(chan)) { states.Add(chan, false); }
+                states[chan] = !states[chan];
+                if (init)
+                {
+                    MidiPort.sendCommand(new byte[] { (byte)(CONTROL_CHANGE + Convert.ToByte(par[1])), Convert.ToByte(par[0]), (byte)(states[chan] ? 127 : 0) });
+                }
             }
+            
         }
 
         public bool Selftest()
@@ -77,10 +84,10 @@ namespace MidiPlugin
             return "MidiPlugin";
         }
 
-        public void Init(IGHP_Implementation GHP)
+        public void Init()
         {
             MidiPort = new TeVirtualMIDI("PHI CC");
-            serial = GHP;
+            states = new Dictionary<byte, bool>();
             init = true;
         }
     }

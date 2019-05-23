@@ -7,17 +7,28 @@ using System.Windows.Forms;
 
 namespace PluginBase
 {
+    public enum CType
+    {
+        Analog = 0,
+        Button = 1,
+        RGBButton = 2,
+        Encoder = 3,
+        LCD = 4,
+        JoyStick = 5,
+        RGBLED = 6
+    }
+
     public interface IPlugin
     {
         Dictionary<string, FunctionBox> GetFunctions();
         bool Selftest();
         string GetPluginName();
-        void Init(IGHP_Implementation serial);
+        void Init();
     }
 
     public interface IGHP_Implementation
     {
-        void Send_Message(byte[] bytes);
+        void SendMessage(params byte[] bytes);
     }
 
     public interface IDialogForm
@@ -27,12 +38,12 @@ namespace PluginBase
 
     public class FunctionBox
     {
-        public delegate void Function(byte chan, int val, params object[] par);
+        public delegate void Function(byte chan, int val,List<object> par);
         public Function function;
-        public byte functionType;
+        public CType functionType;
         public IDialogForm dialogForm;
 
-        public FunctionBox(Function f, byte fType, IDialogForm df)
+        public FunctionBox(Function f, CType fType, IDialogForm df)
         {
             function = f;
             functionType = fType;

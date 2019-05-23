@@ -73,16 +73,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Device.cs" />
+    <Compile Include="Classes\GHP.cs" />
+    <Compile Include="Classes\Profile.cs" />
     <Compile Include="Configure.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Configure.Designer.cs">
       <DependentUpon>Configure.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\AddonDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddonDialog.Designer.cs">
+      <DependentUpon>AddonDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ControlDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ControlDialog.Designer.cs">
+      <DependentUpon>ControlDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PersistentDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PersistentDialog.Designer.cs">
+      <DependentUpon>PersistentDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RTP\RTPthread.cs" />
     <EmbeddedResource Include="Configure.resx">
       <DependentUpon>Configure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddonDialog.resx">
+      <DependentUpon>AddonDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ControlDialog.resx">
+      <DependentUpon>ControlDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PersistentDialog.resx">
+      <DependentUpon>PersistentDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

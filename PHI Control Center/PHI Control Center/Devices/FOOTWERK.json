@@ -20,5 +20,11 @@
 				{"Type": 1, "Id": 54,"X": 648,"Y": 300,"W": 215,"H": 270}
 			]
 		}
+	],
+	"PersistentVariables":
+	[
+		{"Name": "ERF", "Id": 3},
+		{"Name": "APLL", "Id": 5},
+		{"Name": "APUL", "Id": 6},
 	]
 }

@@ -21,8 +21,14 @@ namespace MidiPlugin
 
         public List<object> go(List<object> start)
         {
-            numericUpDown1.Value = (int)start[1];
-            numericUpDown2.Value = (int)start[0];
+            if (start == null)
+            {
+                start = new List<object>();
+                start.Add(0);
+                start.Add(0);
+            }
+            numericUpDown1.Value = Convert.ToInt32(start[1]);
+            numericUpDown2.Value = Convert.ToInt32(start[0]);
             ShowDialog();
             start[0] = numericUpDown2.Value;
             start[1] = numericUpDown1.Value;
