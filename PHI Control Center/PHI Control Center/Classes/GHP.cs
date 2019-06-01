@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PHI_Control_Center.Classes
 {
-    public class GHP
+    public class GHP : IGHP
     {
         public const byte ANALOG_CHANGE = (byte)'A';
         public const byte BUTTON_PRESS = (byte)'B';
@@ -149,6 +149,18 @@ namespace PHI_Control_Center.Classes
                     default: { break; }
                 }
             }
+            Tick();
+        }
+
+        private void Tick()
+        {
+            foreach(KeyValuePair<CType,Dictionary<int,ProfileControl>> kvp in device.Controlls)
+            {
+                foreach (KeyValuePair<int, ProfileControl> kvp2 in kvp.Value)
+                {
+                    ExecuteTickable(GetMapping(kvp.Key, (byte)kvp2.Key),(byte)kvp2.Key,0);
+                }
+            }
         }
 
         public void ParseS()
@@ -228,9 +240,28 @@ namespace PHI_Control_Center.Classes
             {
                 try
                 {
-                    plugins[mapping.PluginName].GetFunctions()[mapping.FunctionName].function(chan, val, mapping.args);
+                    plugins[mapping.PluginName].GetFunctions()[mapping.FunctionName].function(chan, val, mapping.args,this);
                 }
                 catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+
+        private void ExecuteTickable(Mapping mapping, byte chan, int val)
+        {
+            if (mapping != null)
+            {
+                
+                try
+                {
+                    if (plugins[mapping.PluginName].GetFunctions()[mapping.FunctionName].tick)
+                    {
+                        plugins[mapping.PluginName].GetFunctions()[mapping.FunctionName].function(chan, val, mapping.args, this);
+                    }
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }

@@ -18,16 +18,18 @@ namespace PluginBase
 
     public class FunctionBox
     {
-        public delegate void Function(byte chan, int val,List<object> par);
+        public delegate void Function(byte chan, int val,List<object> par,IGHP ghp);
         public Function function;
         public CType functionType;
         public IDialogForm dialogForm;
+        public bool tick;
 
-        public FunctionBox(Function f, CType fType, IDialogForm df)
+        public FunctionBox(Function f, CType fType, IDialogForm df,bool t)
         {
             function = f;
             functionType = fType;
             dialogForm = df;
+            tick = t;
         }
 
         public List<object> aditionalArgs(List <object> start)
@@ -50,5 +52,10 @@ namespace PluginBase
     public interface IDialogForm
     {
         List<object> go(List<object> start);
+    }
+
+    public interface IGHP
+    {
+        void SendMessage(params byte[] bytes);
     }
 }
