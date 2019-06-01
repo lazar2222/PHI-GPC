@@ -21,7 +21,7 @@ const byte LedAlias[3][16] = {{1,5,9,13,0,4,8,12,3,7,11,15,2,6,10,14},{1,5,9,13,
 LiquidCrystal Lcd(LCDRS, LCDEN, D4, D5, D6, D7);
 
 bool Init = false;
-short ENCPre[5] = {0};
+volatile short ENCPre[5] = {0};
 bool ENClast[5] = {true};
 short AnalogPre[19]={0};
 short AnalogAvg[19]={0};

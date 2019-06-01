@@ -25,7 +25,7 @@ const extern byte LedAlias[3][16];
 extern LiquidCrystal Lcd;
 
 extern bool Init;
-extern short ENCPre[5];
+extern volatile short ENCPre[5];
 extern bool ENClast[5];
 extern short AnalogPre[19];
 extern short AnalogAvg[19];

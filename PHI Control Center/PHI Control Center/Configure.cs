@@ -74,7 +74,17 @@ namespace PHI_Control_Center
         {
             LoadDevices();
             LoadPlugins();
-            InitializeProfile();
+            Directory.CreateDirectory("Profiles");
+            if (File.Exists(@"Profiles\default.json"))
+            {
+                using (StreamReader sr = new StreamReader(@"Profiles\default.json"))
+                {
+                    current = JsonConvert.DeserializeObject<Profile>(sr.ReadToEnd());
+                    Text = "PHI Control Center - default.json";
+                }
+            }
+            else { InitializeProfile(); }
+            
         }
 
         private void InitializeProfile()
@@ -171,16 +181,20 @@ namespace PHI_Control_Center
 
         private void pb_MouseClick(object sender, MouseEventArgs e)
         {
-            foreach (Bank b in ((Device)DevicesLB.SelectedItem).Banks)
+            try
             {
-                foreach (Classes.Control c in b.Controls)
+                foreach (Bank b in ((Device)DevicesLB.SelectedItem).Banks)
                 {
-                    if (e.X >= c.X && e.X <= c.X + c.W && e.Y >= c.Y && e.Y <= c.Y + c.H)
+                    foreach (Classes.Control c in b.Controls)
                     {
-                        new ControlDialog(c,plugins,current.ConnectedDevices[((Device)DevicesLB.SelectedItem).DeviceId]).ShowDialog();
+                        if (e.X >= c.X && e.X <= c.X + c.W && e.Y >= c.Y && e.Y <= c.Y + c.H)
+                        {
+                            new ControlDialog(c, plugins, current.ConnectedDevices[((Device)DevicesLB.SelectedItem).DeviceId]).ShowDialog();
+                        }
                     }
                 }
             }
+            catch { }
         }
 
         private void SetText()

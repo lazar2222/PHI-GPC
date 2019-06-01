@@ -79,13 +79,13 @@ void MuxA()
     SetMux(MUXE,3,i);
 
     short val = analogRead(MUXAR[0]);
-    val = constrain(map(val,0,980,0,1023),0,1023);
+    val = constrain(map(val,0,1015,0,1023),0,1023);
     short avg = (val+AnalogAvg[i])/2;
     AnalogAvg[i]=val;
     if(abs(avg-AnalogPre[i])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i],avg,true);AnalogPre[i]=avg;}
 
     val = analogRead(MUXAR[1]);
-    val = constrain(map(val,0,980,0,1023),0,1023);
+    val = constrain(map(val,0,1015,0,1023),0,1023);
     avg = (val+AnalogAvg[i+8])/2;
     AnalogAvg[i+8]=val;
     if(abs(avg-AnalogPre[i+8])>TRESHOLD){SendMessage(ANALOG_CHANGE,AnalogAlias[i+8],avg,true);AnalogPre[i+8]=avg;}

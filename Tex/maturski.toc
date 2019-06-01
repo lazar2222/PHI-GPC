@@ -1,32 +1,62 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {serbian}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {1}Kori\IeC {\v s}\IeC {\'c}ene Tehnologije}{1}{chapter.1}% 
+\contentsline {chapter}{\chapternumberline {1}Kori\IeC {\v s}\IeC {\'c}ene tehnologije}{1}{chapter.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Arduino}{1}{section.1.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}C\# desktop aplikacije}{1}{section.1.2}% 
+\contentsline {paragraph}{PWM}{1}{section*.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}MIDI}{1}{section.1.3}% 
+\contentsline {section}{\numberline {1.2}C\# desktop aplikacije}{2}{section.1.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{virtualMIDI}{1}{section*.1}% 
+\contentsline {section}{\numberline {1.3}JSON}{2}{section.1.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {2}Kontroler}{2}{chapter.2}% 
+\contentsline {section}{\numberline {1.4}MIDI}{2}{section.1.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Hardver}{2}{section.2.1}% 
+\contentsline {subsection}{virtualMIDI}{2}{section*.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Mikrokontrolerski Kod}{2}{section.2.2}% 
+\contentsline {chapter}{\chapternumberline {2}GHP Protokol}{4}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}GHP Protokol}{3}{chapter.3}% 
+\contentsline {chapter}{\chapternumberline {3}Kontroler}{6}{chapter.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Desktop aplikacija}{4}{chapter.4}% 
+\contentsline {paragraph}{Karakteristike Arduino Mega mikrokontrolera}{7}{section*.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Segment za konfigurisanje}{4}{section.4.1}% 
+\contentsline {section}{\numberline {3.1}Hardver}{7}{section.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Dopunski kontroleri}{4}{section*.2}% 
+\contentsline {subsection}{Kontrolna povr\IeC {\v s}ina}{7}{section*.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Trajni podatci}{4}{section*.3}% 
+\contentsline {section}{\numberline {3.2}Elektronika i integrisana kola}{8}{section.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Segment za obradu u realnom vremenu}{4}{section.4.2}% 
+\contentsline {paragraph}{Matrice tastera}{9}{section*.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {5}Zaklju\IeC {\v c}ci i dalji rad}{5}{chapter.5}% 
+\contentsline {paragraph}{Multipleksiranje}{9}{section*.6}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Mikrokontrolerski kod}{10}{section.3.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\IeC {\v C}itanje tastera}{10}{section*.7}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\IeC {\v C}itanje analognih kontrola}{11}{section*.8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Rotacioni enkoderi}{12}{section*.9}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {4}Desktop softver}{15}{chapter.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Upotreba softvera}{15}{section.4.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Segment za konfigurisanje}{15}{section*.10}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Segment za obradu u realnom vremenu}{17}{section*.11}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Detaji implementacije}{17}{section.4.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Osnovni protok informacija i dodatne komponente}{17}{section*.12}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Detalji implementacije GHP protokola}{20}{section*.13}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Detalji implementacije niti za obradu podataka u realnom vremenu}{21}{section*.14}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {5}Zaklju\IeC {\v c}ci i dalji rad}{22}{chapter.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Dodatni materijali}{23}{appendix*.15}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Literatura}{31}{section*.17}% 

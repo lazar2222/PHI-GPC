@@ -30,7 +30,7 @@ namespace MidiPlugin
             Functions = new Dictionary<string, FunctionBox>
             {
                 { "MidiCCAnalog", new FunctionBox(MidiCCAnalog, CType.Analog, df) },
-                { "MidiCCMomentatyButton", new FunctionBox(MidiCCMomentaryButton, CType.Button, df) },
+                { "MidiCCMomentaryButton", new FunctionBox(MidiCCMomentaryButton, CType.Button, df) },
                 { "MidiCCToggleButton", new FunctionBox(MidiCCToggleButton, CType.Button, df) }
             };
         }

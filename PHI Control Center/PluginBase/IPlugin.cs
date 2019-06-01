@@ -7,17 +7,6 @@ using System.Windows.Forms;
 
 namespace PluginBase
 {
-    public enum CType
-    {
-        Analog = 0,
-        Button = 1,
-        RGBButton = 2,
-        Encoder = 3,
-        LCD = 4,
-        JoyStick = 5,
-        RGBLED = 6
-    }
-
     public interface IPlugin
     {
         Dictionary<string, FunctionBox> GetFunctions();
@@ -25,16 +14,6 @@ namespace PluginBase
         string GetPluginName();
         void Init();
         void Close();
-    }
-
-    public interface IGHP_Implementation
-    {
-        void SendMessage(params byte[] bytes);
-    }
-
-    public interface IDialogForm
-    {
-        List<object> go(List<object> start);
     }
 
     public class FunctionBox
@@ -55,5 +34,21 @@ namespace PluginBase
         {
             return dialogForm.go(start);
         }
+    }
+
+    public enum CType
+    {
+        Analog = 0,
+        Button = 1,
+        RGBButton = 2,
+        Encoder = 3,
+        LCD = 4,
+        JoyStick = 5,
+        RGBLED = 6
+    }
+
+    public interface IDialogForm
+    {
+        List<object> go(List<object> start);
     }
 }

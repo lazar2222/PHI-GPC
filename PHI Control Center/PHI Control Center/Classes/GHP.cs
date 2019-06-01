@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PHI_Control_Center.Classes
 {
-    public class GHP : IGHP_Implementation
+    public class GHP
     {
         public const byte ANALOG_CHANGE = (byte)'A';
         public const byte BUTTON_PRESS = (byte)'B';

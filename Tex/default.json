@@ -1,0 +1,133 @@
+{
+  "ConnectedDevices": 
+  {
+    "53": {
+      "COMPort": null,
+      "DeviceId": 53,
+      "Controlls": 
+	  {
+        "Analog": 
+		{
+          "0": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [1, 0]}}},
+          "1": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [2, 0]}}},
+          "2": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [3, 0]}}},
+          "3": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [4, 0]}}},
+          "4": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [9, 0]}}},
+          "5": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [10, 0]}}},
+          "6": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [11, 0]}}},
+          "7": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [12, 0]}}},
+          "8": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [5, 0]}}},
+          "9": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [6, 0]}}},
+          "10": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [7, 0]}}},
+          "11": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [8, 0]}}},
+          "12": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [13, 0]}}},
+          "13": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [14, 0]}}},
+          "14": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [15, 0]}}},
+          "15": {"BankName": "AnalogBank", "Mappings": {"AnalogBank1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [16, 0]}}},
+          "16": {"BankName": "JoyBank"," Mappings": {}},
+          "17": {"BankName": "JoyBank", "Mappings": {}},
+          "18": {"BankName": "AnalogPedal", "Mappings": {"AnalogPedal1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCAnalog", "args": [100, 0]}}}
+        },
+        "Button": {
+          "0": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCMomentaryButton", "args": [32, 0]}}},
+          "1": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCMomentaryButton", "args": [33, 0]}}},,
+          "2": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCMomentaryButton", "args": [34, 0]}}},,
+          "3": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCMomentaryButton", "args": [35, 0]}}},,
+          "4": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCToggleButton", "args": [36, 0]}}},,
+          "5": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCToggleButton", "args": [37, 0]}}},,
+          "6": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCToggleButton", "args": [38, 0]}}},,
+          "7": {"BankName": "ButtonBank", "Mappings": {"ButtonBank1": { "PluginName": "MidiPlugin", "FunctionName": "MidiCCToggleButton", "args": [39, 0]}}},,
+          "8": {"BankName": "ButtonBank","Mappings": {}},
+          "9": {"BankName": "ButtonBank","Mappings": {}},
+          "10": {"BankName": "ButtonBank","Mappings": {}},
+          "11": {"BankName": "ButtonBank","Mappings": {}},
+          "12": {"BankName": "ButtonBank","Mappings": {}},
+          "13": {"BankName": "ButtonBank","Mappings": {}},
+          "14": {"BankName": "ButtonBank","Mappings": {}},
+          "15": {"BankName": "ButtonBank","Mappings": {}},
+          "16": {"BankName": "ButtonBank","Mappings": {}},
+          "17": {"BankName": "ButtonBank","Mappings": {}},
+          "18": {"BankName": "ButtonBank","Mappings": {}},
+          "19": {"BankName": "ButtonBank","Mappings": {}},
+          "20": {"BankName": "ButtonBank","Mappings": {}},
+          "21": {"BankName": "ButtonBank","Mappings": {}},
+          "22": {"BankName": "ButtonBank","Mappings": {}},
+          "23": {"BankName": "ButtonBank","Mappings": {}},
+          "24": {"BankName": "ButtonBank","Mappings": {}},
+          "25": {"BankName": "ButtonBank","Mappings": {}},
+          "26": {"BankName": "ButtonBank","Mappings": {}},
+          "27": {"BankName": "ButtonBank","Mappings": {}},
+          "28": {"BankName": "ButtonBank","Mappings": {}},
+          "29": {"BankName": "ButtonBank","Mappings": {}},
+          "30": {"BankName": "ButtonBank","Mappings": {}},
+          "31": {"BankName": "ButtonBank","Mappings": {}},
+          "32": {"BankName": "ButtonBank","Mappings": {}},
+          "33": {"BankName": "ButtonBank","Mappings": {}},
+          "34": {"BankName": "ButtonBank","Mappings": {}},
+          "35": {"BankName": "ButtonBank","Mappings": {}},
+          "36": {"BankName": "ButtonBank","Mappings": {}},
+          "37": {"BankName": "ButtonBank","Mappings": {}},
+          "38": {"BankName": "ButtonBank","Mappings": {}},
+          "39": {"BankName": "ButtonBank","Mappings": {}},
+          "40": {"BankName": "ButtonBank","Mappings": {}},
+          "41": {"BankName": "ButtonBank","Mappings": {}},
+          "42": {"BankName": "ButtonBank","Mappings": {}},
+          "43": {"BankName": "ButtonBank","Mappings": {}},
+          "44": {"BankName": "ButtonBank","Mappings": {}},
+          "45": {"BankName": "ButtonBank","Mappings": {}},
+          "46": {"BankName": "ButtonBank","Mappings": {}},
+          "47": {"BankName": "ButtonBank","Mappings": {}},
+          "48": {"BankName": "ScreenBank", "Mappings": {}},
+          "49": {"BankName": "ScreenBank", "Mappings": {}},
+          "50": {"BankName": "ScreenBank", "Mappings": {}},
+          "51": {"BankName": "ScreenBank", "Mappings": {}},
+          "52": {"BankName": "JoyBank", "Mappings": {}},
+          "53": {"BankName": "DigitalPedals", "Mappings": {"DigitalPedals1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCToggleButton", "args": [101, 0]}}},
+          "54": {"BankName": "DigitalPedals", "Mappings": {"DigitalPedals1": {"PluginName": "MidiPlugin", "FunctionName": "MidiCCMomentaryButton", "args": [102, 0]}}}
+        },
+        "RGBLED": 
+		{
+          "0": {"BankName": "ButtonBank", "Mappings": {}},
+          "1": {"BankName": "ButtonBank", "Mappings": {}},
+          "2": {"BankName": "ButtonBank", "Mappings": {}},
+          "3": {"BankName": "ButtonBank", "Mappings": {}},
+          "4": {"BankName": "ButtonBank", "Mappings": {}},
+          "5": {"BankName": "ButtonBank", "Mappings": {}},
+          "6": {"BankName": "ButtonBank", "Mappings": {}},
+          "7": {"BankName": "ButtonBank", "Mappings": {}},
+          "8": {"BankName": "ButtonBank", "Mappings": {}},
+          "9": {"BankName": "ButtonBank", "Mappings": {}},
+          "10": {"BankName": "ButtonBank", "Mappings": {}},
+          "11": {"BankName": "ButtonBank", "Mappings": {}},
+          "12": {"BankName": "ButtonBank", "Mappings": {}},
+          "13": {"BankName": "ButtonBank", "Mappings": {}},
+          "14": {"BankName": "ButtonBank", "Mappings": {}},
+          "15": {"BankName": "ButtonBank", "Mappings": {}}
+        },
+        "LCD": 
+		{
+          "0": {"BankName": "ScreenBank", "Mappings": {}}
+		},
+        "Encoder": 
+		{
+          "0": {"BankName": "ScreenBank", "Mappings": {}},
+          "1": {"BankName": "ScreenBank", "Mappings": {}},
+          "2": {"BankName": "ScreenBank", "Mappings": {}},
+          "3": {"BankName": "ScreenBank", "Mappings": {}},
+          "4": {"BankName": "JogBank", "Mappings": {}}
+		}
+      },
+      "ActivePage": 
+	  {
+        "AnalogBank": "AnalogBank1",
+        "ButtonBank": "ButtonBank1",
+        "ScreenBank": "ScreenBank1",
+        "JogBank": "JogBank1",
+        "JoyBank": "JoyBank1",
+        "AnalogPedal": "AnalogPedal1",
+        "DigitalPedals": "DigitalPedals1"
+      }
+    }
+  },
+  "PluginStates": { }
+}
